@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="MedangMoShop" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^G:\\Users\\57120042\\Desktop\\Ep\.7\ Data\ Access\ EnityFW-20201024T070512Z-001\\ProjectShopTangMo\\Shop\\Shop\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

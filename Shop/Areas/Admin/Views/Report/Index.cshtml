@@ -1,0 +1,31 @@
+﻿<div class="row">
+    <div class="col-sm">
+        <h1>อัพโหลด งานทั้งหมด </h1>
+        <form asp-action="OnPostUpload" asp-controller="Report" enctype="multipart/form-data" method="post">
+            <dl>
+                <dt>
+                    <label>อัพโหลด</label>
+                </dt>
+                <dd>
+                    <input type="file" id="files" name="files" class="form-control">
+                </dd>
+            </dl>
+            <input class="btn btn-primary" type="submit" value="Upload"/>
+        </form>
+    </div>
+    <div class="col-sm">
+        <h1>ออกรายงาน รูปแบบ ต่างๆ</h1>
+        1.Excel
+        <form asp-action="Exportdata" asp-controller="Report" method="post">
+            <input type="submit" name="name" value="ดาวโหลด" />
+        </form>
+        <br />
+
+        2.Report 
+        <br />
+        <a class="btn btn-primary" asp-action="Viewer" asp-controller="Report">
+        Report
+        </a>
+
+    </div>
+</div>

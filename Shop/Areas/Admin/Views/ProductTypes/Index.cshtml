@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Shop.Models.ProductType>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">Product List </h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i> &nbsp; Create New Product</a>
+    </div>
+</div>
+
+<table class="table" id="IstheTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class="btn btn-success text-white" asp-action="Edit" asp-route-id="@item.ID ">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger text-white">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#IstheTable').DataTable();
+        });
+    </script>
+
+}

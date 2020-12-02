@@ -1,0 +1,108 @@
+﻿@model Shop.Models.Product
+
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Upsert</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row pb-lg-5">
+    <div class="col-md-4">
+        <form asp-action="Upsert" method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageUrl" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+
+                <select asp-for="Type"
+                        class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.Data,"Name","Name"))">
+                </select>
+
+                @*@Html.DropDownListFor(x => x.Type, new SelectList(@ViewBag.Data, "ID", "Name"))*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price50" class="control-label"></label>
+                <input asp-for="Price50" class="form-control" />
+                <span asp-validation-for="Price50" class="text-danger"></span>
+            </div>
+
+            @if (ViewBag.Img == "Edit")
+            {
+                <!-----showรูปภาพ------------------>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input type="file" name="ImageUrl" multiple class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <img src="@Model.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            }
+            else
+            {
+                <!-----showรูปภาพ------------------>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input type="file" name="ImageUrl" id="uploadBox" multiple class="form-control" />
+                </div>
+            }
+
+            <!--------------------------------->
+            <div class="form-group">
+                @if (ViewBag.Img != "Edit")
+                {
+                    <input type="submit" value="Summit" onclick="return validateInput()" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-info">Back to List</a>
+                }
+                else
+                {
+                    <input type="submit" value="Summit" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-info">Back to List</a>
+                }
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.tiny.cloud/1/n94ifuzvl80pchikopiwgz2esrw8n28dwcywvpejlqrregfp/tinymce/5/tinymce.min.js"></script>
+
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'lists',
+                menubar: 'file edit format'
+            });
+            function validateInput() {
+                if (document.getElementById("uploadBox").value == "") {
+                    swal("Error", "Please select an image", "error");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+}

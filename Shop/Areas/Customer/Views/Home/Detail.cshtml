@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="row text-white text-center bg-dark">
+    <div class="col-sm-12 p-2 my-5">
+        <p>
+            <h1>ตัวอย่างสินค้า</h1>
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row p-5">
+    <diV id="textcenter" class="col-sm-6 ">
+        <h1>ภาพตัวอย่างสินค้ารวมทั้งหมด </h1>
+    </diV>
+    <diV class="col-sm-6">
+        <div class="listNewpic2">
+            <img class="img-thumbnail"
+                 src="https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.0-9/123019931_690961494879761_7650644539336121455_n.jpg?_nc_cat=108&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeG6UbPeP0q3myl9TWB3sXRvzPdKkq2kEHrM90qSraQQemrHpxrvndtnsCi_G79AGPY&_nc_ohc=chRGBhYbeH0AX-CG4nD&_nc_ht=scontent.fbkk22-1.fna&oh=de8b9635a04c39f0252a0817bae2d125&oe=5FDA3EA6">
+        </div>
+    </diV>
+</div>
+
+<div class="row pb-5 bg-dark">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
+                    <div class="card" style="border:0px;">
+                        <img src="@item.ImageUrl" class="card-img-top rounded" />
+                        <div class="pl-1">
+                            <p class="card-title h5"><b style="color:#2c3e50">@item.Type</b></p>
+                            <p class="card-title text-primary">by <b>MedTangMo</b></p>
+                        </div>
+                        <div style="padding-left:5px;">
+                            <p>List Price: <strike><b class="">$@item.Price.ToString("0.00")</b></strike></p>
+                        </div>
+                        <div style="padding-left:5px;">
+                            <p style="color:maroon">As low as: <b class="">$@item.Price50.ToString("0.00")</b></p>
+                        </div>
+                    </div>
+                    <div>
+                        <a asp-action="ShowDetail" class="btn btn-primary form-control" asp-route-id="@item.Id">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
