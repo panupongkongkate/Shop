@@ -1,4 +1,7 @@
 ﻿@using Shop.Utility
+@using Microsoft.AspNetCore.Http
+@using BulkyBook.Utility;
+@inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,10 +48,44 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Profile">ผู้พัตนา</a>
                         </li>
-
                         @*<li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="TestSP">ผู้TestSP</a>
-                        </li>*@
+                                <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="TestSP">ผู้TestSP</a>
+                            </li>*@
+
+                        @if (HttpContextAccessor.HttpContext.Session.Get("ssShoppingCart") != null)
+                        {
+                            <li class="nav-item " >
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    ตะกล้าสินค้า
+                                    <i class="fas fa-shopping-cart"></i> &nbsp;
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.GetObject<List<int>>("ssShoppingCart").Count;
+                                    }
+                                    (@count)
+                                </a>
+
+                            </li >
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    ตะกล้าสินค้า
+                                    <i class="fas fa-shopping-cart"></i> &nbsp;
+
+                                    (0)
+                                </a>
+
+                            </li>
+                        }
+                        <!------------------------>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Customer" asp-controller="SearchShoppingCart" asp-action="Index">สินค้าที่ซื้อแล้ว</a>
+                    </li>
+
+
 
                         @if (User.IsInRole(SD.Role_Admin))
                         {

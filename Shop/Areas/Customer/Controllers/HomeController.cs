@@ -9,14 +9,19 @@ using Microsoft.Extensions.Logging;
 using Shop.DataAccess.Data;
 using Shop.Models;
 using Shop.Models.ViewModels;
+using Shop.Utility;
+using Microsoft.AspNetCore.Http;
+using BulkyBook.Utility;
 
 namespace Shop.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller
     {
+        //int sumCatalog;
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+      
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context )
         {
@@ -27,6 +32,8 @@ namespace Shop.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            var listSend = new List<int>();
+            HttpContext.Session.SetObject("ssShoppingCart", listSend);
             return View();
         }
 
@@ -55,6 +62,49 @@ namespace Shop.Areas.Customer.Controllers
 
             return View(product);
         }
+
+        public IActionResult DetailsPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            List<int> listcatalogy = new List<int>();
+            var converCatalog = HttpContext.Session.GetObject<List<int>>("ssShoppingCart");
+            if (converCatalog != null)
+            {
+
+                //var Count = HttpContext.Session.GetInt32("ssShoppingCart").GetValueOrDefault();
+                //sumCatalog = Count + 1;
+
+                //IList<int> converCatalog = (IList<int>)TempData["lstShoppingCart"];
+
+                //foreach (var item in converCatalog)
+                //{
+                //    listcatalogy.Add(item);
+                //}
+                //listcatalogy.Add((int)id);
+                //TempData["lstShoppingCart"] = listcatalogy;
+
+                converCatalog.Add((int)id);
+                listcatalogy = converCatalog;
+            }
+            else
+            {
+                //sumCatalog = 1;
+                listcatalogy.Add((int)id);
+                //--------------------------------
+
+                //TempData["lstShoppingCart"] = listcatalogy;
+               
+            }
+
+            HttpContext.Session.SetObject("ssShoppingCart", listcatalogy);
+            //HttpContext.Session.SetInt32("ssShoppingCart", sumCatalog);
+            return RedirectToAction("Detail", "Home", new { area = "Customer" });
+
+        }
+
 
         public IActionResult Profile()
         {

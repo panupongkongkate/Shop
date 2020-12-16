@@ -61,6 +61,7 @@ namespace Shop.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
@@ -69,12 +70,19 @@ namespace Shop.Areas.Identity.Pages.Account
             //เพิ่ม
             [Required]
             public string Name { get; set; }
+            [Required]
             public string StreetAddress { get; set; }
+            [Required]
             public string City { get; set; }
+            [Required]
             public string State { get; set; }
+            [Required]
             public string PostalCode { get; set; }
+            [Required]
             public string PhoneNumber { get; set; }
+            [Required]
             public int? CompanyId { get; set; }
+            [Required]
             public string Role { get; set; }
         }
 

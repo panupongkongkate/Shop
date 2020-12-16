@@ -54,7 +54,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 //สร้าง
                 Product product = new Product();
-                ViewBag.Img = "Create";
+                ViewBag.Img = "สร้าง";
                 return View(product);
             }
             else
@@ -65,7 +65,7 @@ namespace Shop.Areas.Admin.Controllers
                     return NotFound();
                 }
                 //แก้ไข
-                ViewBag.Img = "Edit";
+                ViewBag.Img = "แก้ไข";
                 return View(product);
             }
         }

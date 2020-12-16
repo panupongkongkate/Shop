@@ -1,0 +1,46 @@
+﻿@model Shop.Models.ViewModels.ShoppingCartViewModel
+
+<div class="col-4" style="padding-left:30px;">
+    <div class="row">
+        <form method="post" class="pb-5">
+            <div class="col-12">
+                <label>Name : </label>
+            </div>
+            <div class="col-12" style="padding-bottom:15px">
+                <input asp-for="@Model.Appointments.CustomerName" class="form-control" />
+                <span asp-validation-for="@Model.Appointments.CustomerName" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label>Phone Number : </label>
+            </div>
+            <div class="col-12" style="padding-bottom:15px">
+                <input asp-for="@Model.Appointments.CustomerPhoneNumber" type="tel" class="form-control" />
+                <span asp-validation-for="@Model.Appointments.CustomerPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label>Email  : </label>
+            </div>
+            <div class="col-12" style="padding-bottom:15px">
+                <input asp-for="@Model.Appointments.CustomerEmail" type="email" class="form-control" />
+                <span asp-validation-for="@Model.Appointments.CustomerEmail" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label>Appointment Date : </label>
+            </div>
+            <div class="col-12" style="padding-bottom:15px">
+                <input asp-for="@Model.Appointments.AppointmentDate" value="" type="date" id="datepicker" class="form-control" />
+            </div>
+            <div class="col-12">
+                <label>Appointment Time : </label>
+            </div>
+            <div class="col-12" style="padding-bottom:15px">
+                <input asp-for="@Model.Appointments.AppointmentTime" value="" type="time" class="timepicker form-control" />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">ยืนยัน</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

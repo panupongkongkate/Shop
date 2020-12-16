@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201214154948_addAppoitmentsAndProduct.cs" />
+    <Compile Remove="Migrations\20201214154948_addAppoitmentsAndProduct.Designer.cs" />
+    <Compile Remove="Migrations\20201214155132_addAppoitmentsAndProduct.cs" />
+    <Compile Remove="Migrations\20201214155132_addAppoitmentsAndProduct.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />

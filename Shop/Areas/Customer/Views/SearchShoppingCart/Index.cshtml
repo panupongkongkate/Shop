@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+    <h1 class="text-info p-3">ค้นหาจากเลขที่ใบเสร็จ</h1>
+    <form asp-controller="SearchShoppingCart" asp-action="Searchproduct">
+        <label>เลขที่ใบเสร็จ</label>
+        <!-------ต้องใส่name ให้ตรงกับ ค่าinputที่Controller ------------->
+        <input type="search" name="id" value="" />
+        <input type="submit" class="btn btn-primary">
+    </form>
+</center>
+
+
+
