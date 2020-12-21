@@ -42,8 +42,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\PresentWeb\" />
     <Folder Include="wwwroot\images\profile\" />
     <Folder Include="wwwroot\images\products\" />
+    <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 
   <ItemGroup>

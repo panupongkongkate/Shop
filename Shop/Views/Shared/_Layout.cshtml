@@ -14,114 +14,106 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <!---Slide---------------->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Sriracha', cursive;
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-info text-white">
-            <div class="container-fluid">
 
-                <a class="navbar-brand " style="color:pink" asp-area="Customer" asp-controller="Home" asp-action="Index"><h1>MedTangMo</h1></a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info text-white sticky-top">
+        <div class="container-fluid">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Index">หน้าหลัก</a>
+            <a class="navbar-brand " style="color:pink" asp-area="Customer" asp-controller="Home" asp-action="Index"><h1>MedTangMo</h1></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Index">หน้าหลัก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Detail">สินค้า</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Privacy">ติดต่อ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Profile">ผู้พัตนา</a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="TestSP">ผู้TestSP</a>
+                        </li>*@
+
+                    @if (HttpContextAccessor.HttpContext.Session.Get("ssShoppingCart") != null)
+                    {
+                        <li class="nav-item ">
+                            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                ตะกล้าสินค้า
+                                <i class="fas fa-shopping-cart"></i> &nbsp;
+                                @{
+                                    var count = HttpContextAccessor.HttpContext.Session.GetObject<List<int>>("ssShoppingCart").Count;
+                                }
+                                (@count)
+                            </a>
                         </li>
+
+                    }
+                    else
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Detail">สินค้า</a>
+
+                            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                ตะกล้าสินค้า
+                                <i class="fas fa-shopping-cart"></i> &nbsp;
+
+                                (0)
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Privacy">ติดต่อ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Profile">ผู้พัตนา</a>
-                        </li>
-                        @*<li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="TestSP">ผู้TestSP</a>
-                            </li>*@
-
-                        @if (HttpContextAccessor.HttpContext.Session.Get("ssShoppingCart") != null)
-                        {
-                            <li class="nav-item " >
-                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-                                    ตะกล้าสินค้า
-                                    <i class="fas fa-shopping-cart"></i> &nbsp;
-                                    @{
-                                        var count = HttpContextAccessor.HttpContext.Session.GetObject<List<int>>("ssShoppingCart").Count;
-                                    }
-                                    (@count)
-                                </a>
-
-                            </li >
-
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                
-                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-                                    ตะกล้าสินค้า
-                                    <i class="fas fa-shopping-cart"></i> &nbsp;
-
-                                    (0)
-                                </a>
-
-                            </li>
-                        }
-                        <!------------------------>
+                    }
+                    <!------------------------>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Customer" asp-controller="SearchShoppingCart" asp-action="Index">สินค้าที่ซื้อแล้ว</a>
                     </li>
 
-
-
-                        @if (User.IsInRole(SD.Role_Admin))
-                        {
-                            <div class="dropdown">
-                                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    แก้ไขภายในราน
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">แก้ไขรายการแต่ละประเภท</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">แก้ไขรายการสินค้า</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">ดูระบบสมาชิก</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Report" asp-action="Index">ออกรายงาน</a>
-
-                                </div>
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <div class="dropdown">
+                            <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                แก้ไขภายในราน
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">แก้ไขรายการแต่ละประเภท</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">แก้ไขรายการสินค้า</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">ดูระบบสมาชิก</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="SearchShoppingCart" asp-action="Index">ดูสินค้าที่สั่ง</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Report" asp-action="Index">ออกรายงาน</a>
                             </div>
-                        }
-
-                    </ul>
-                </div>
+                        </div>
+                    }
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+
     <div class="container-fluid">
-        <main role="main" class="pb-5">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted bg-info ">
-        <div class="container-fluid pt-3">
+    <footer class="footer text-muted bg-info ">
+        <div class="container-fluid">
             <div class="row ">
-                <div class="col-sm-6 text-white">
+                <div class="col-6 text-white">
                     About US <br>
                     Panupong KongKate
                 </div>
-                <div class="col-sm-6 text-right">
+                <div class="col-6 text-right">
                     <h1><strong class="text-white">MedTangMo</strong> </h1>
                 </div>
             </div>
@@ -136,6 +128,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+    <!---Slide---------------->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

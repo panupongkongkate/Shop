@@ -1,29 +1,48 @@
-﻿<div class="row text-white text-center bg-dark">
-    <div class="col-sm-12 p-lg-5 my-5">
-        <p>
-            <h1>ยินดีต้อนรับ</h1>
-        </p>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row text-white text-center bg-dark">
+    <div class="col-sm-12">
+        <div class="video-background-holder">
+            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="~/videos/42019836_1052516578245616_6038489419231629044_n.mp4" type="video/mp4">
+            </video>
+            <div class="video-background-content container h-100">
+                <div class="d-flex h-100 text-center align-items-center">
+                    <div class="w-100 text-white">
+                        <h1 class="display-4">ยินดีต้อนรับ</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <div class="row">
-    <div id="textcenter" class="col-sm-4 p-5 ">
+    <div class="col-sm-6 p-5 Ttextcenter ">
         <p>
             <h2>รีวิวผู้จากซื้อ</h2>
         </p>
     </div>
-    <div class="col-sm-4 text-left ">
-        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.15752-9/118237404_3333042746752141_7342195777292621818_n.jpg?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_eui2=AeFlgRaBX4CIeSZ3_8ozynhNKgg36OuxqEMqCDfo67GoQ411QCZ6ZaJRajva66d_Sh4&_nc_ohc=Ti1MHhx-KOoAX9R8xoY&_nc_ht=scontent.fbkk22-3.fna&oh=a3d52624f9a52fb652f450fc3118eed7&oe=5FDBF3BD"
-             class="thumbnail" style="width: 100% ">
+    <div class="col-sm-6 text-left ">
+
+        <div class="carousel"
+             data-flickity='{ "imagesLoaded": true,"freeScroll": true }'>
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/Review1.jpg" />
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/Review2.jpg" />
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/Review3.jpg" />
+        </div>
+
     </div>
-    <div class="col-sm-4 text-left ">
-        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t1.15752-9/117732729_4273766816028463_956761644947490692_n.jpg?_nc_cat=110&ccb=2&_nc_sid=ae9488&_nc_eui2=AeH5_7b5Wedz-bee5eh2wb_TDCWfg3_PDiwMJZ-Df88OLPqFFHcg7c_C32jzXvnCUAs&_nc_ohc=hYJunt-Yd1kAX9kTGgF&_nc_ht=scontent.fbkk22-3.fna&oh=4b8ecd1cc9339e7d7f90abe1296c8971&oe=5FD98164"
-             class="thumbnail" style="width: 100% ">
-    </div>
+
 </div>
 
 <div class="row  bg-dark text-white text-center ">
-    <div class="col-md-12 p-5 ">
+    <div class="col-md-12 pt-5">
         <h2><i class="fas fa-store"></i> ร้านต่างหูหนีบ</h2>
         <p class="pt-1">
             ร้านต่างหูหนีบ ที่ร้า่นจะนำสินค้ามาเป็น lotๆ ส่วนใหญ่ไม่ซ้ำกัน
@@ -34,9 +53,28 @@
             ลูกค้าท่านใดอยากได้แป้นแบบสกรูแจ้งได้จร้า
             <br>
         </p>
-        <p class="pb-5 ">
+        <p>
             <a asp-action="Detail" class="btn btn-primary"
                style="color: white;">ดูตัวอย่างสินค้า</a>
         </p>
     </div>
 </div>
+
+<div class="row bg-dark">
+    <div class="container-fluid">
+        <div class="carousel "
+             data-flickity='{ "imagesLoaded": true,"wrapAround": true }'>
+
+            <img class="img-fluid" src="~/images/products/055ca30b-acd4-43b0-bd83-d8b4fdebaa7f.jpg">
+            <img class="img-fluid" src="~/images/products/3072d5ab-5313-45e2-b936-78997d802ba1.jpg">
+            <img class="img-fluid" src="~/images/products/4e091281-6487-4fb8-b99f-e067029d81cf.jpg">
+            <img class="img-fluid" src="~/images/products/5816094e-f344-40b7-a2d8-319dbafc0fb7.jpg">
+            <img class="img-fluid" src="~/images/products/7658a193-85e8-4591-b791-609ef3b22bcf.jpg">
+            <img class="img-fluid" src="~/images/products/9cf9a6ea-5bbd-4612-a2ae-ab523176edd4.jpg">
+            <img class="img-fluid" src="~/images/products/c3fe857e-191d-4ca8-92d6-3786a05eee6d.jpg">
+
+        </div>
+    </div>
+
+</div>
+

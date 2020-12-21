@@ -5,7 +5,7 @@
     <div class="col-12">
         <div class="row" style="padding-top:10px;">
             <div class="col-2">
-                เลชที่ใบเสร็จ
+                <label asp-for="@Model.Receiptnumber"></label>
             </div>
             <div class="col-3">
                 <input asp-for="@Model.Receiptnumber" readonly class="form-control" />
@@ -26,7 +26,7 @@
     <div class="col-12">
         <div class="row" style="padding-top:10px;">
             <div class="col-2">
-                Full Name
+                <label asp-for="@Model.CustomerName"></label>
             </div>
             <div class="col-3">
                 <input asp-for="@Model.CustomerName" readonly class="form-control" />
@@ -35,7 +35,7 @@
 
             </div>
             <div class="col-2">
-                Email
+                <label asp-for="@Model.CustomerEmail"></label>
             </div>
             <div class="col-3">
                 <input asp-for="@Model.CustomerEmail" readonly class="form-control" />
@@ -46,7 +46,7 @@
     <div class="col-12">
         <div class="row" style="padding-top:10px;">
             <div class="col-2">
-                Phone Number
+                <label asp-for="@Model.CustomerPhoneNumber"></label>
             </div>
             <div class="col-3">
                 <input asp-for="@Model.CustomerPhoneNumber" readonly class="form-control" />
@@ -55,7 +55,7 @@
 
             </div>
             <div class="col-2">
-                Appointment Date
+                <label asp-for="@Model.AppointmentDate"></label>
             </div>
             <div class="col-3">
                 <input asp-for="@Model.AppointmentDate" readonly class="form-control" />

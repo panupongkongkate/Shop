@@ -63,6 +63,24 @@ namespace Shop.Areas.Customer.Controllers
             return View(product);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ShowJsonDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Json(product);
+        }
+
         public IActionResult DetailsPost(int? id)
         {
             if (id == null)

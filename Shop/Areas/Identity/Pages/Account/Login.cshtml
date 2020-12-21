@@ -5,8 +5,7 @@
     ViewData["Title"] = "Log in";
 }
 
-
-<div class="row pt-5 pb-5">
+<!--<div class="row pt-5 pb-5">
     <div class="col-sm">
         <h1>@ViewData["Title"]</h1>
         <section>
@@ -35,11 +34,11 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Log in</button>
                 </div>
-                <div class="form-group">
-                    @*<p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>*@
-                    <p>
+                <div class="form-group">-->
+@*<p>
+        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+    </p>*@
+<!--<p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
                 </div>
@@ -71,6 +70,94 @@
                 </form>
             }
         }
+    </div>
+</div>-->
+
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col text-center">
+        @*<a class="btn btn-block bg-primary text-white " href="#">
+                <span>
+                    <i class="fab fa-facebook-square"></i>
+                    Sign up with Facebook
+                </span>
+            </a>*@
+        <div class="card">
+            <div class="card-header"> <h1>เข้าสู่ระบบ </h1></div>
+            <div class="card-body">
+                <form id="account" method="post">
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                        </div>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                        </div>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                    </div>
+                </form>
+
+                <div class="hrdivider">
+                    <hr />
+                    <span>OR</span>
+                </div>
+
+                <div>
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                            <div>
+                                <p>
+                                    ข้อมูลไม่ถูกต้องกรุณาตรวจสอบข้อมูล
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                <div>
+                                    <p>
+                                        @foreach (var provider in Model.ExternalLogins)
+                                        {
+                                            <button type="submit" class="btn btn-primary btn-block" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">  <i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
+                                        }
+                                    </p>
+                                </div>
+                            </form>
+                        }
+                    }
+                </div>
+
+                <p>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col">
     </div>
 </div>
 

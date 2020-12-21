@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
-<div class="row">
+<div class="row ">
     <div class="col-6">
         <h2 class="text-primary">รายการสินค้าแต่ละประเภท </h2>
     </div>
@@ -14,47 +14,54 @@
     </div>
 </div>
 
-<table class="table" id="IstheTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(Model => Model.ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="container-fluid">
+    <table id="IstheTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <a class="btn btn-success text-white" asp-action="Edit" asp-route-id="@item.ID ">
-                        <i class="fas fa-edit"></i>
-                    </a>
-
-                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger text-white">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(Model => Model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a class="btn btn-success text-white" asp-action="Edit" asp-route-id="@item.ID ">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger text-white">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <br />
+
+</div>
 
 @section Scripts {
+
     <script>
         $(document).ready(function () {
             $('#IstheTable').DataTable();
         });
+
     </script>
 
 }

@@ -1,36 +1,42 @@
 ﻿@model IEnumerable<Product>
 
-
-<div class="row text-white text-center bg-dark">
-    <div class="col-sm-12 p-2 my-5">
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row text-center bg-dark" style="background-image: url('/images/PresentWeb/bag2.jpg')
+    ">
+    <div class="col-sm-12 p-2 my-5 text-dark">
         <p>
             <h1>ตัวอย่างสินค้า</h1>
         </p>
     </div>
 </div>
 
-
-
 <div class="row p-5">
-    <diV id="textcenter" class="col-sm-6 ">
-        <h1>ภาพตัวอย่างสินค้ารวมทั้งหมด </h1>
-    </diV>
     <diV class="col-sm-6">
-        <div class="listNewpic2">
-            <img class="img-thumbnail"
-                 src="https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.0-9/123019931_690961494879761_7650644539336121455_n.jpg?_nc_cat=108&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeG6UbPeP0q3myl9TWB3sXRvzPdKkq2kEHrM90qSraQQemrHpxrvndtnsCi_G79AGPY&_nc_ohc=chRGBhYbeH0AX-CG4nD&_nc_ht=scontent.fbkk22-1.fna&oh=de8b9635a04c39f0252a0817bae2d125&oe=5FDA3EA6">
+        <div class="carousel"
+             data-flickity='{ "imagesLoaded": true,"freeScroll": true }'>
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/picExsample.jpg" />
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/picExsample2.jpg" />
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/picExsample3.jpg" />
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/picExsample4.jpg" />
+            <img class="detailShow img-fluid" src="~/images/PresentWeb/picExsample5.jpg" />
         </div>
+    </diV>
+
+    <diV class=" Ttextcenter col-sm-6">
+        <h1>ภาพตัวอย่างสินค้ารวมทั้งหมด </h1>
     </diV>
 </div>
 
-<div class="row pb-5 bg-dark">
+<div class="row bg-dark">
     @foreach (var item in Model)
     {
         <div class="col-lg-3 col-md-6">
             <div class="row p-2">
                 <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
                     <div class="card" style="border:0px;">
-                        <img src="@item.ImageUrl" class="card-img-top rounded" />
+                        <img src="@item.ImageUrl" class="img-fluid card-img-top rounded" />
                         <div class="pl-1">
                             <p class="card-title h5"><b style="color:#2c3e50">@item.Type</b></p>
                             <p class="card-title text-primary">by <b>MedTangMo</b></p>
@@ -42,8 +48,11 @@
                             <p style="color:maroon">As low as: <b class="">$@item.Price50.ToString("0.00")</b></p>
                         </div>
                     </div>
+                    @*<div>
+                            <a asp-action="ShowDetail" class="btn btn-primary form-control" asp-route-id="@item.Id">รายละเอียด</a>
+                        </div>*@
                     <div>
-                        <a asp-action="ShowDetail" class="btn btn-primary form-control" asp-route-id="@item.Id">Details</a>
+                        <button type="button" class="btn btn-primary form-control " onclick="ShowData(@item.Id)">รายละเอียด</button>
                     </div>
                 </div>
             </div>
@@ -51,4 +60,109 @@
     }
 </div>
 
+<!----------model--------------------->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
 
+                <h5 class="modal-title" id="HeadModalLabel">รายการสินค้าที่เลือก</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!------------------------------------------------------------------------------>
+                <form>
+                    <div class="form-group">
+                        <div class="card">
+                            <input hidden id="Id-name" />
+                            <div class="card-header bg-light ml-0 row container-fluid">
+                                <div class="col-12 col-md-6">
+                                    <label id="Title-name" class="col-form-label"> </label>
+                                    <p class="text-warning">by MedTangMo</p>
+                                </div>
+                                <div class="col-12 col-md-6 text-md-right pt-4">
+                                    <label id="Type-name" class="col-form-label"> </label>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="container-fluid rounded p-2">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row pl-2">
+                                                <h5 class="text-muted">List Price: <label id="Price-name" class="col-form-label"> </label></h5>
+                                            </div>
+                                            <div class="row text-center pl-2">
+                                                <div class="p-1 col-6  border-bottom">
+                                                    <div>Quantity</div>
+                                                </div>
+                                                <div class="p-1 col-6  border-bottom">
+                                                    <div>1-25</div>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
+                                                <div class="p-1 col-6">
+                                                    <div>Price</div>
+                                                </div>
+                                                <div class="p-1 col-6 ">
+
+                                                    <label id="Price50-name" class="col-form-label"> </label>
+                                                </div>
+                                            </div>
+                                            <div class="row pl-2">
+                                                <label id="Description-name" class="col-form-label"> </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center">
+
+                                            <img class="img-fluid" id="img-name" width="100%" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back to List</button>
+                <a class="btn btn-primary" id="send-name">Add To Bag</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        function ShowData(v) {
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ShowJsonDetail", "Home")",
+                data: {id : v} ,
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $("#Id-name").text(response["id"]);
+                    $("#Title-name").text(response["title"]);
+                    $("#Type-name").text(response["type"]);
+                    $("#Price-name").text(response["price"]);
+
+                    $("#Price50-name").text(response["price50"]);
+
+                    $("#Description-name").text(response["description"]);
+                    $("#img-name").attr('src', response["imageUrl"]);
+
+                    $('#send-name').attr("href", "DetailsPost/" + response["id"]);
+
+                    $('#exampleModal').modal('show');
+                }
+            });
+
+        }
+    </script>
+}
